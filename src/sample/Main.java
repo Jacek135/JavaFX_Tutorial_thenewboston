@@ -1,15 +1,15 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 
 
-public class Main extends Application implements EventHandler<ActionEvent>{
+public class Main extends Application {
 
     Button button;
 
@@ -24,19 +24,22 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 
         button = new Button();
         button.setText("Click me");
-        button.setOnAction(this);
+        /*button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("I am an anonymous Inner Class");
+            }
+        });*/
+
+        button.setOnAction(event -> {
+            System.out.println("hey now brown cow");
+            System.out.println("I am a metaball");
+        });
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
 
         primaryStage.setScene(new Scene(layout, 300, 275));
         primaryStage.show();
-    }
-
-    @Override
-    public void handle(ActionEvent event) {
-        if(event.getSource() == button){
-            System.out.println("Qooo Sthjlksdjafdlkas");
-        }
     }
 }
