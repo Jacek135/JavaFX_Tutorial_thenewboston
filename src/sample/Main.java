@@ -3,13 +3,15 @@ package sample;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
     Stage window;
-    Button button;
 
     public static void main(String[] args) {
         launch(args);
@@ -18,31 +20,27 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         window = primaryStage;
-        window.setTitle("JavaFx - thenewboston");
-//        window.setOnCloseRequest(event1 -> closeProgram1());
-        window.setOnCloseRequest(event1 -> {
-            event1.consume();
-            closeProgram();
-        });
+        window.setTitle("thenewboston");
 
-        button = new Button("Close Program");
-        button.setOnAction(event -> closeProgram());
+        HBox topMenu = new HBox();
+        Button buttonA = new Button("File");
+        Button buttonB = new Button("Edit");
+        Button buttonC = new Button("View");
+        topMenu.getChildren().addAll(buttonA, buttonB, buttonC);
 
-        StackPane layout = new StackPane();
-        layout.getChildren().add(button);
-        Scene scene = new Scene(layout, 300, 250);
+        VBox leftMenu = new VBox();
+        Button buttonD = new Button("D");
+        Button buttonE = new Button("E");
+        Button buttonF = new Button("F");
+        leftMenu.getChildren().addAll(buttonD, buttonE, buttonF);
+
+        BorderPane borderPane = new BorderPane();
+        borderPane.setTop(topMenu);
+        borderPane.setLeft(leftMenu);
+
+
+        Scene scene = new Scene(borderPane, 300, 250);
         window.setScene(scene);
         window.show();
-    }
-    private void closeProgram1(){
-        System.out.println("File is saved");
-        window.close();
-    }
-    private void closeProgram(){
-        Boolean answer = ConfirmBox.display("Title", "Sure you want to exit");
-        if (answer)
-            window.close();
-        System.out.println("File is saved");
-        window.close();
     }
 }
