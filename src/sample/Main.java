@@ -3,9 +3,7 @@ package sample;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -24,7 +22,10 @@ public class Main extends Application {
         window.setTitle("thenewboston");
 
         button = new Button("Click me");
-        button.setOnAction(event1 -> AlertBox.display("Title of window", "Wow this allert is awaseon!"));
+        button.setOnAction(e -> {
+           boolean result = ConfirmBox.display("Title of Window", "Are you sure you want to send naked pics?");
+            System.out.println(result);
+        });
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
