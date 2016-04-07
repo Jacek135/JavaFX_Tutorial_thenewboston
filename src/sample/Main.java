@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     Stage window;
-    Scene scene1, scene2;
     Button button;
 
     public static void main(String[] args) {
@@ -19,19 +18,31 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         window = primaryStage;
-        window.setTitle("thenewboston");
-
-        button = new Button("Click me");
-        button.setOnAction(e -> {
-           boolean result = ConfirmBox.display("Title of Window", "Are you sure you want to send naked pics?");
-            System.out.println(result);
+        window.setTitle("JavaFx - thenewboston");
+//        window.setOnCloseRequest(event1 -> closeProgram1());
+        window.setOnCloseRequest(event1 -> {
+            event1.consume();
+            closeProgram();
         });
+
+        button = new Button("Close Program");
+        button.setOnAction(event -> closeProgram());
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
         Scene scene = new Scene(layout, 300, 250);
-
         window.setScene(scene);
         window.show();
+    }
+    private void closeProgram1(){
+        System.out.println("File is saved");
+        window.close();
+    }
+    private void closeProgram(){
+        Boolean answer = ConfirmBox.display("Title", "Sure you want to exit");
+        if (answer)
+            window.close();
+        System.out.println("File is saved");
+        window.close();
     }
 }
